@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "4.0"
+metadata:
+  name: employeemanagementfrontend
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: abap-cloud-abap_env_v1-e79c2ad0trial-dev
+          url: https://cb6549d4-2ebc-4106-94c5-35da55fca11f.abap.ap21.hana.ondemand.com/
+          scp: true
+        app:
+          name: ZEMP_MANAGEMENT
+          description: Employee Management Application
+          package: ZLEAVEMANAGE
+          transport: ''
+        exclude:
+          - /test/
+          - /localService/
